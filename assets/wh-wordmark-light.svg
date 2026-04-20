@@ -1,0 +1,13 @@
+
+<svg width="240" height="40" viewBox="0 0 240 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(0, 4)">
+    <rect x="21.3353" y="0" width="10.6643" height="10.6667" rx="5.33217" fill="#D26850"></rect>
+    <rect x="31.9998" y="10.6667" width="10.6666" height="21.4057" rx="5.33332" transform="rotate(90 31.9998 10.6667)" fill="#FAF5EF"></rect>
+    <rect x="21.4056" y="21.3333" width="10.6666" height="21.4057" rx="5.33332" transform="rotate(90 21.4056 21.3333)" fill="#FAF5EF"></rect>
+    <line x1="3" y1="16" x2="29" y2="16" stroke="#D26850" stroke-width="1" stroke-dasharray="2 2"></line>
+    <rect x="14.5" y="14.5" width="3" height="3" fill="#212523" stroke="#FAF5EF" stroke-width="0.75"></rect>
+  </g>
+  <text x="48" y="26" font-family="Figtree, ui-sans-serif, system-ui, sans-serif" font-weight="500" font-size="19" letter-spacing="-0.3" fill="#FAF5EF">
+    <tspan>Workshop</tspan><tspan dx="8" fill="#FAF5EF">Hiring</tspan>
+  </text>
+</svg>

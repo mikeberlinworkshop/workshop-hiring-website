@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workshop Hiring — executive-search rigor, for every role</title>
+<meta name="description" content="The hiring process top firms use for executive searches — deep rubrics, real evidence, a senior recruiter owning the arc, honest feedback — made affordable for every role. Born inside Workshop Ventures.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Workshop Hiring">
+<meta property="og:description" content="The hiring process top firms reserve for executive searches. Now affordable for every role.">
+<meta property="og:image" content="assets/wh-social-square.svg">
+
+<link rel="icon" type="image/svg+xml" href="assets/wh-logomark.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --wh-bg: #F4EFE9;
+    --wh-bg-raised: #FBF8F4;
+    --wh-bg-wash: #F9E8E0;
+    --wh-border: #E3D7CB;
+    --wh-primary: #D26850;
+    --wh-primary-ink: #A84930;
+    --wh-primary-soft: #F5D7D1;
+    --wv-off-black: #212523;
+    --wv-gray: #48535E;
+    --wv-gray-300: #7A7C7B;
+    --wv-gray-400: #A8A099;
+
+    --wv-font-display: "Figtree", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --wv-font-body: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+    --wv-dur-fast: 140ms;
+    --wv-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--wh-bg);
+    color: var(--wv-gray);
+    font: 400 18px/1.6 var(--wv-font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: var(--wh-primary-ink); text-decoration: none; border-bottom: 1px solid currentColor; }
+  a:hover { color: var(--wh-primary); }
+
+  .nav {
+    border-bottom: 1px dashed var(--wh-border);
+    background: var(--wh-bg);
+    position: sticky; top: 0; z-index: 20;
+  }
+  .nav__inner {
+    max-width: 1080px; margin: 0 auto;
+    padding: 20px 32px;
+    display: flex; align-items: center; gap: 32px;
+  }
+  .nav img { height: 28px; display: block; }
+  .nav__links {
+    margin-left: auto;
+    display: flex; gap: 28px;
+    font-size: 15px;
+  }
+  .nav__links a { color: var(--wv-gray); border-bottom: 0; }
+  .nav__links a:hover { color: var(--wv-off-black); }
+
+  .page {
+    max-width: 1080px; margin: 0 auto;
+    padding: 80px 32px 48px;
+  }
+
+  /* HERO */
+  .hero { margin-bottom: 88px; }
+  .hero h1 {
+    font-family: var(--wv-font-display);
+    font-size: clamp(44px, 6vw, 68px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--wv-off-black);
+    font-weight: 500;
+    margin: 0 0 32px;
+    max-width: 960px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--wh-primary);
+    position: relative;
+    display: inline-block;
+  }
+  .hero h1 em::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 4px;
+    height: 10px;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 10' preserveAspectRatio='none'><path d='M0 6 Q 25 1, 50 5 T 100 5 T 150 5 T 200 5' fill='none' stroke='%23D26850' stroke-width='2' stroke-linecap='round'/></svg>") repeat-x;
+    opacity: 0.45;
+    z-index: -1;
+  }
+  .hero__ask {
+    font-size: 20px;
+    line-height: 1.6;
+    color: var(--wv-gray);
+    max-width: 720px;
+    margin: 0;
+  }
+  .hero__ask b { color: var(--wv-off-black); font-weight: 500; }
+
+  /* SECTION HEADING */
+  section.block { margin-bottom: 88px; scroll-margin-top: 80px; }
+  .block__head {
+    display: flex; align-items: baseline; gap: 24px;
+    margin-bottom: 32px; padding-bottom: 16px;
+    border-bottom: 1px dashed var(--wh-border);
+  }
+  .block__title {
+    font-family: var(--wv-font-display);
+    font-size: 28px; letter-spacing: -0.015em;
+    color: var(--wv-off-black);
+    font-weight: 500;
+    margin: 0;
+  }
+  .block__sub {
+    font-size: 15px;
+    color: var(--wv-gray-300);
+    margin-left: auto;
+  }
+
+  /* BELIEFS */
+  .beliefs__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--wh-border);
+    border-radius: 20px;
+    background: var(--wh-bg-raised);
+    overflow: hidden;
+  }
+  .belief {
+    padding: 32px 36px;
+    border-right: 1px dashed var(--wh-border);
+    border-bottom: 1px dashed var(--wh-border);
+  }
+  .belief:nth-child(2n) { border-right: 0; }
+  .belief:nth-last-child(-n+2) { border-bottom: 0; }
+  .belief p {
+    font-size: 17px; line-height: 1.6;
+    color: var(--wv-gray);
+    margin: 0;
+  }
+  .belief p b {
+    color: var(--wv-off-black);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 6px;
+    font-family: var(--wv-font-display);
+    font-size: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  /* METHOD — two-column: bespoke lede + constants list */
+  .method {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .method__lede {
+    font-family: var(--wv-font-display);
+    font-size: 30px; line-height: 1.25; letter-spacing: -0.018em;
+    color: var(--wv-off-black);
+    font-weight: 500;
+    margin: 0;
+  }
+  .method__lede em {
+    font-style: normal; color: var(--wh-primary);
+    border-bottom: 1px dashed var(--wh-primary);
+    padding-bottom: 2px;
+  }
+  .method__note {
+    font-size: 16px; line-height: 1.65;
+    color: var(--wv-gray);
+    margin: 24px 0 0;
+    max-width: 520px;
+  }
+  .constants {
+    border: 1px solid var(--wh-border);
+    border-radius: 20px;
+    background: var(--wh-bg-raised);
+    overflow: hidden;
+  }
+  .constants__head {
+    padding: 18px 28px;
+    font-family: var(--wv-font-display);
+    font-size: 14px; letter-spacing: 0.02em;
+    color: var(--wh-primary-ink);
+    font-weight: 500;
+    border-bottom: 1px dashed var(--wh-border);
+  }
+  .constant {
+    padding: 22px 28px;
+    border-bottom: 1px dashed var(--wh-border);
+  }
+  .constant:last-child { border-bottom: 0; }
+  .constant__body {
+    font-size: 16px; line-height: 1.55;
+    color: var(--wv-gray);
+  }
+  .constant__body b {
+    color: var(--wv-off-black);
+    font-weight: 500;
+    display: block;
+    margin-bottom: 4px;
+    font-family: var(--wv-font-display);
+    font-size: 18px;
+    letter-spacing: -0.01em;
+  }
+
+  /* TEAM */
+  .team {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  .person {
+    border: 1px solid var(--wh-border);
+    border-radius: 20px;
+    background: var(--wh-bg-raised);
+    padding: 32px 36px;
+  }
+  .person__head {
+    display: flex; align-items: center; gap: 18px;
+    margin-bottom: 20px;
+  }
+  .person__av {
+    width: 68px; height: 68px; border-radius: 999px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: var(--wh-primary-soft);
+  }
+  .person__name {
+    font-family: var(--wv-font-display);
+    font-size: 24px; letter-spacing: -0.015em;
+    color: var(--wv-off-black);
+    font-weight: 500;
+    margin: 0;
+  }
+  .person__body {
+    font-size: 17px; line-height: 1.65;
+    color: var(--wv-gray);
+    margin: 0;
+  }
+  .person__body b { color: var(--wv-off-black); font-weight: 500; }
+  .person__body a { color: var(--wh-primary-ink); }
+
+  .origin {
+    border: 1px solid var(--wh-border);
+    border-radius: 20px;
+    background: var(--wv-off-black);
+    color: #CFC8BE;
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  .origin__label {
+    font-family: var(--wv-font-display);
+    font-size: 15px;
+    letter-spacing: 0.01em;
+    color: var(--wh-primary-soft);
+    font-weight: 500;
+  }
+  .origin__body {
+    font-size: 17px; line-height: 1.65;
+  }
+  .origin__body b { color: var(--wh-bg); font-weight: 500; }
+  .origin__body a { color: var(--wh-bg); border-bottom-color: #45494A; }
+  .origin__body a:hover { border-bottom-color: var(--wh-primary); color: var(--wh-primary-soft); }
+
+  /* CONTACT */
+  .contact {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  .contact__copy h3 {
+    font-family: var(--wv-font-display);
+    font-size: 30px; letter-spacing: -0.018em;
+    color: var(--wv-off-black);
+    font-weight: 500;
+    margin: 0 0 20px;
+  }
+  .contact__copy p {
+    font-size: 17px; line-height: 1.65;
+    color: var(--wv-gray);
+    margin: 0 0 18px;
+    max-width: 460px;
+  }
+  .contact__copy p b { color: var(--wv-off-black); font-weight: 500; }
+
+  .form-card {
+    border: 1px solid var(--wh-border);
+    border-radius: 20px;
+    background: var(--wh-bg-wash);
+    padding: 28px 32px;
+  }
+  form { display: flex; flex-direction: column; gap: 16px; }
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field label {
+    font-family: var(--wv-font-display);
+    font-size: 14px;
+    color: var(--wv-off-black);
+    font-weight: 500;
+  }
+  .field input,
+  .field select,
+  .field textarea {
+    border: 1px solid var(--wh-border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    background: #fff;
+    font: 400 16px/1.5 var(--wv-font-body);
+    color: var(--wv-off-black);
+    transition: border-color var(--wv-dur-fast) var(--wv-ease);
+    width: 100%;
+  }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--wh-primary);
+    box-shadow: 0 0 0 3px var(--wh-primary-soft);
+  }
+  .field textarea { min-height: 88px; resize: vertical; font-family: var(--wv-font-body); }
+
+  .chips {
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .chip {
+    display: inline-flex; align-items: center;
+    padding: 10px 16px;
+    border: 1px solid var(--wh-border);
+    border-radius: 999px;
+    background: #fff;
+    font-size: 15px;
+    color: var(--wv-gray);
+    cursor: pointer;
+    transition: all var(--wv-dur-fast) var(--wv-ease);
+  }
+  .chip input { position: absolute; opacity: 0; pointer-events: none; }
+  .chip:hover { border-color: var(--wh-primary); color: var(--wv-off-black); }
+  .chip.is-active {
+    background: var(--wh-primary);
+    border-color: var(--wh-primary);
+    color: #fff;
+  }
+
+  button[type="submit"] {
+    margin-top: 8px;
+    padding: 14px 22px;
+    border-radius: 999px;
+    border: 1px solid var(--wh-primary);
+    background: var(--wh-primary);
+    color: #fff;
+    font: 500 16px/1 var(--wv-font-display);
+    cursor: pointer;
+    transition: background var(--wv-dur-fast) var(--wv-ease);
+    align-self: flex-start;
+  }
+  button[type="submit"]:hover { background: var(--wh-primary-ink); }
+
+  .success {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px dashed var(--wh-primary);
+    border-radius: 12px;
+    background: var(--wh-primary-soft);
+    color: var(--wh-primary-ink);
+    font-size: 14px;
+    line-height: 1.55;
+    display: none;
+  }
+  .success.is-visible { display: block; }
+
+  /* FOOTER */
+  .foot {
+    padding-top: 32px; margin-top: 48px;
+    border-top: 1px dashed var(--wh-border);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--wv-font-body);
+    font-size: 14px; color: var(--wv-gray-300);
+  }
+  .foot img { height: 20px; opacity: 0.7; }
+
+  @media (max-width: 860px) {
+    .method, .contact, .origin { grid-template-columns: 1fr; gap: 24px; }
+    .team, .beliefs__grid { grid-template-columns: 1fr; }
+    .belief { border-right: 0; }
+    .belief:last-child { border-bottom: 0; }
+  }
+  @media (max-width: 520px) {
+    .page { padding: 56px 20px 32px; }
+    .nav__links { display: none; }
+    .person, .form-card, .origin, .contact__copy { padding: 24px; }
+    .origin { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <img src="assets/wh-wordmark-dark.svg" alt="Workshop Hiring">
+    <div class="nav__links">
+      <a href="#beliefs">Beliefs</a>
+      <a href="#method">Method</a>
+      <a href="#who">Who we are</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="page">
+
+  <header class="hero">
+    <h1>The hiring process top firms run on executive searches. For <em>every role</em>.</h1>
+    <p class="hero__ask">
+      Real rubrics, real evidence, a senior recruiter owning the arc, honest feedback on a fast clock. Companies pay six figures to run it on VP searches. <b>Below that, no one can justify the cost.</b> Workshop Hiring compresses the expensive parts with AI so you can run it everywhere.
+    </p>
+  </header>
+
+  <section id="beliefs" class="block" aria-labelledby="beliefs-h">
+    <div class="block__head">
+<h2 class="block__title" id="beliefs-h">What we believe</h2>
+    </div>
+    <div class="beliefs__grid">
+      <div class="belief">
+        <p><b>Great hiring isn't a mystery.</b> Rubrics, structured interviews, work samples, reference depth — the moves that work are well known. The open question is how to run them without burning out a senior team.</p>
+      </div>
+      <div class="belief">
+        <p><b>A resume is a starting point, not evidence.</b> Most hires are made on signals that don't predict performance. A good process surfaces the ones that do.</p>
+      </div>
+      <div class="belief">
+        <p><b>Candidates deserve a real answer, fast.</b> A clear yes or no inside a week is a sign of respect. A six-week silence is a sign the system is broken.</p>
+      </div>
+      <div class="belief">
+        <p><b>Tools compress the expensive parts; humans keep the judgment.</b> AI can read two hundred resumes with the same rubric. It can't decide who to bet on. Keep those separate.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="method" class="block" aria-labelledby="method-h">
+    <div class="block__head">
+      <h2 class="block__title" id="method-h">How we work</h2>
+      <span class="block__sub">The executive-search playbook. Run on every role.</span>
+    </div>
+    <div class="method">
+      <div>
+        <p class="method__lede">
+          We run the same process a top retained-search firm would run on a $400k VP search — <em>on every role we take</em>.
+        </p>
+        <p class="method__note">
+          Week one is design: a working session with the hiring manager that turns the job into a rubric and a sourcing plan. Weeks two through four are execution. AI handles the expensive parts — sourcing, resume review, the screener interview, the test task — on a stack of our own tools and the best recruiting point solutions on the market. Faz does the judgment work.
+        </p>
+      </div>
+      <div class="constants">
+        <div class="constants__head">Non-negotiable on every search</div>
+        <div class="constant">
+          <div class="constant__mark">01</div>
+          <div class="constant__body"><b>A rubric written with the hiring manager.</b> Before we post anything, we know what we're measuring and how much each dimension weighs.</div>
+        </div>
+        <div class="constant">
+          <div class="constant__mark">02</div>
+          <div class="constant__body"><b>Evidence at every stage.</b> Resume, screener, task, reference. Every score links to the moment that produced it.</div>
+        </div>
+        <div class="constant">
+          <div class="constant__mark">03</div>
+          <div class="constant__body"><b>A 72-hour feedback loop for candidates.</b> Real answers on a tight clock, even when it's no.</div>
+        </div>
+        <div class="constant">
+          <div class="constant__mark">04</div>
+          <div class="constant__body"><b>A senior recruiter owning the arc.</b> The same person who kicks off the role is the one who hands you the finalists.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="who" class="block" aria-labelledby="who-h">
+    <div class="block__head">
+      <h2 class="block__title" id="who-h">Who we are</h2>
+    </div>
+    <div class="team">
+      <article class="person">
+        <div class="person__head">
+          <img class="person__av" src="assets/faz.jpg" alt="Fazilat Nassiri">
+          <h3 class="person__name">Fazilat Nassiri</h3>
+        </div>
+        <p class="person__body">
+          Faz is an EdTech recruiter and career match-maker based in Oakland. She and Mike worked together at Entangled Solutions and at Guild, placing senior talent into mission-driven companies. <b>At Workshop Hiring she runs searches end to end</b> — writing the rubric, talking to candidates, and handing hiring managers a small set of finalists with the evidence to pick. <a href="https://workshop.dev/team" target="_blank" rel="noopener">On Workshop's team</a>.
+        </p>
+      </article>
+      <article class="person">
+        <div class="person__head">
+          <img class="person__av" src="assets/mike.png" alt="Mike Berlin">
+          <h3 class="person__name">Mike Berlin</h3>
+        </div>
+        <p class="person__body">
+          Mike leads Workshop Hiring from the venture-studio side. Seventeen years in education technology, now partner at <a href="https://workshop.dev" target="_blank" rel="noopener">Workshop Ventures</a>, where he's hired into and alongside the studio's portfolio. <b>He makes sure the process earns its keep on every search we run.</b>
+        </p>
+      </article>
+    </div>
+
+    <aside class="origin">
+      <div class="origin__label">Where we come from</div>
+      <div class="origin__body">
+        Workshop Hiring was born inside <a href="https://workshop.dev" target="_blank" rel="noopener">Workshop Ventures</a>, a venture studio that builds alongside founders in education and climate. Every portfolio company hit the same wall: the hiring process that works beautifully at the VP level collapses the moment you try to run it on five roles at once. <b>So we wrapped the executive-search playbook in our own tools, layered in the best recruiting solutions on the market, and partnered with Faz to run searches.</b>
+      </div>
+    </aside>
+  </section>
+
+  <section id="contact" class="block" aria-labelledby="contact-h">
+    <div class="block__head">
+      <h2 class="block__title" id="contact-h">Get in touch</h2>
+    </div>
+    <div class="contact">
+      <div class="contact__copy">
+        <h3>Tell us who you are.</h3>
+        <p>
+          <b>Candidates</b> — if you got an email or saw a posting from us and want to check it's real, we'll reply inside a business day with the role, the company, and a person to talk to.
+        </p>
+        <p>
+          <b>Hiring teams</b> — tell us about the role. We'll come back with whether we're the right team for it and what a first conversation looks like.
+        </p>
+      </div>
+
+      <div class="form-card">
+        <form name="workshop-hiring" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="workshop-hiring">
+          <p hidden><label>Leave this empty: <input name="bot-field"></label></p>
+
+          <div class="field">
+            <label>I'm reaching out as</label>
+            <div class="chips" role="radiogroup" aria-label="Who you are">
+              <label class="chip is-active">
+                <input type="radio" name="kind" value="candidate" checked>
+                <span>Candidate</span>
+              </label>
+              <label class="chip">
+                <input type="radio" name="kind" value="hiring">
+                <span>Hiring for a role</span>
+              </label>
+              <label class="chip">
+                <input type="radio" name="kind" value="other">
+                <span>Something else</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input id="f-name" name="name" type="text" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" required autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="f-context">Company or role</label>
+            <input id="f-context" name="context" type="text" placeholder="e.g. a role you're hiring for, or the one you heard from us about">
+          </div>
+          <div class="field">
+            <label for="f-note">Anything else</label>
+            <textarea id="f-note" name="note" placeholder="What's on your mind"></textarea>
+          </div>
+
+          <button type="submit">Send</button>
+        </form>
+        <div class="success" id="success">
+          Thanks. We got it and will be back inside one business day.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <img src="assets/wh-wordmark-dark.svg" alt="Workshop Hiring">
+    <span>© 2026 Workshop Ventures</span>
+  </footer>
+
+</main>
+
+<script>
+  document.querySelectorAll(".chip input").forEach(function (input) {
+    input.addEventListener("change", function () {
+      document.querySelectorAll(".chip").forEach(function (chip) { chip.classList.remove("is-active"); });
+      input.closest(".chip").classList.add("is-active");
+    });
+  });
+
+  document.querySelectorAll("form[data-netlify]").forEach(function (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data).toString()
+      }).then(function () {
+        form.reset();
+        document.querySelectorAll(".chip").forEach(function (chip, i) { chip.classList.toggle("is-active", i === 0); });
+        document.querySelector(".chip input[value='candidate']").checked = true;
+        var success = document.getElementById("success");
+        success.classList.add("is-visible");
+        success.scrollIntoView({ behavior: "smooth", block: "center" });
+      }).catch(function () {
+        form.submit();
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

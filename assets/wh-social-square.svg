@@ -1,0 +1,14 @@
+
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#F4EFE9"></rect>
+  <g transform="translate(136, 96) scale(4)">
+    <rect x="21.3353" width="10.6643" height="10.6667" rx="5.33217" fill="#D26850"></rect>
+    <rect x="31.9998" y="10.6667" width="10.6666" height="21.4057" rx="5.33332" transform="rotate(90 31.9998 10.6667)" fill="#212523"></rect>
+    <rect x="21.4056" y="21.3333" width="10.6666" height="21.4057" rx="5.33332" transform="rotate(90 21.4056 21.3333)" fill="#212523"></rect>
+    <line x1="3" y1="16" x2="29" y2="16" stroke="#D26850" stroke-width="1" stroke-dasharray="2 2"></line>
+    <rect x="14.5" y="14.5" width="3" height="3" fill="#F4EFE9" stroke="#212523" stroke-width="0.75"></rect>
+  </g>
+  <text x="200" y="300" text-anchor="middle" font-family="Figtree, sans-serif" font-weight="500" font-size="32" letter-spacing="-0.5" fill="#212523">Workshop Hiring</text>
+  <line x1="80" y1="340" x2="320" y2="340" stroke="#BCBEBD" stroke-width="1" stroke-dasharray="3 3"></line>
+  <text x="200" y="362" text-anchor="middle" font-family="Figtree, sans-serif" font-weight="400" font-size="13" letter-spacing="1.5" fill="#7A7C7B">LEVERAGED HUMANS, NOT REPLACED HUMANS</text>
+</svg>
