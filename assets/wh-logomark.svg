@@ -1,8 +1,7 @@
-
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="21.3353" width="10.6643" height="10.6667" rx="5.33217" fill="#D26850"></rect>
-  <rect x="31.9998" y="10.6667" width="10.6666" height="21.4057" rx="5.33332" transform="rotate(90 31.9998 10.6667)" fill="#212523"></rect>
-  <rect x="21.4056" y="21.3333" width="10.6666" height="21.4057" rx="5.33332" transform="rotate(90 21.4056 21.3333)" fill="#212523"></rect>
-  <line x1="3" y1="16" x2="29" y2="16" stroke="#D26850" stroke-width="1" stroke-dasharray="2 2"></line>
-  <rect x="14.5" y="14.5" width="3" height="3" fill="#F4EFE9" stroke="#212523" stroke-width="0.75"></rect>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <rect x="21.33" y="0" width="10.67" height="10.67" rx="5.33" fill="#D26850"/>
+  <rect x="10.59" y="10.67" width="21.41" height="10.67" rx="5.33" fill="#212523"/>
+  <rect x="0" y="21.33" width="21.41" height="10.67" rx="5.33" fill="#212523"/>
+  <line x1="3" y1="16" x2="29" y2="16" stroke="#D26850" stroke-width="1" stroke-dasharray="2 2"/>
+  <rect x="14.5" y="14.5" width="3" height="3" fill="#F4EFE9" stroke="#212523" stroke-width="0.75"/>
 </svg>
