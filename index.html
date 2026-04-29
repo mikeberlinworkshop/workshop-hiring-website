@@ -70,6 +70,23 @@
   }
   .nav__links a { color: var(--wv-gray); border-bottom: 0; }
   .nav__links a:hover { color: var(--wv-off-black); }
+  .nav__login {
+    margin-left: 24px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--wh-primary);
+    background: transparent;
+    color: var(--wh-primary-ink) !important;
+    font-family: var(--wv-font-display);
+    font-size: 14px;
+    font-weight: 500;
+    border-bottom: 1px solid var(--wh-primary) !important;
+    transition: background var(--wv-dur-fast) var(--wv-ease), color var(--wv-dur-fast) var(--wv-ease);
+  }
+  .nav__login:hover {
+    background: var(--wh-primary);
+    color: #fff !important;
+  }
 
   .page {
     max-width: 1080px; margin: 0 auto;
@@ -410,6 +427,7 @@
   @media (max-width: 520px) {
     .page { padding: 56px 20px 32px; }
     .nav__links { display: none; }
+    .nav__login { margin-left: auto; }
     .person, .form-card, .origin, .contact__copy { padding: 24px; }
     .origin { padding: 24px; }
   }
@@ -426,6 +444,7 @@
       <a href="#who">Who we are</a>
       <a href="#contact">Contact</a>
     </div>
+    <a class="nav__login" href="https://app.workshophiring.com">Log in</a>
   </div>
 </nav>
 
@@ -434,7 +453,7 @@
   <header class="hero">
     <h1>The executive-search process, on <em>every role</em> you hire.</h1>
     <p class="hero__ask">
-      When a company hires a VP, they run a proper search: a real rubric, careful screening, structured interviews, finalists with evidence behind each one. On every other role most of it gets skipped, because the cost of running it outruns the cost of the hire. <b>Workshop Hiring uses AI for the parts that take time and a senior recruiter for the parts that don't</b>, so the good process becomes affordable everywhere.
+      When a company hires a VP, they run a proper search: a real rubric, careful screening, structured interviews, finalists with evidence behind each one. On every other role most of it gets skipped, because the cost of running it outruns the cost of the hire. <b>Workshop Hiring uses AI to do the volume work — sourcing, resume review, structured screens — and a senior recruiter to make every call on who advances</b>, so the good process becomes affordable everywhere.
     </p>
   </header>
 
@@ -469,7 +488,7 @@
           We run the same process a top retained-search firm would run on a $400k VP search — <em>on every role we take</em>.
         </p>
         <p class="method__note">
-          Week one is design: a working session with the hiring manager that turns the job into a rubric and a sourcing plan. Weeks two through four are execution. AI handles the expensive parts — sourcing, resume review, the screener interview, the test task — on a stack of our own tools and the best recruiting point solutions on the market. Faz does the judgment work.
+          Week one is design: a working session with the hiring manager that turns the job into a rubric and a sourcing plan. Weeks two through four are execution. AI does the volume work — sourcing, resume review, the screener interview, the test task — on a stack of our own tools and the best recruiting point solutions on the market. Faz makes every call on who moves forward.
         </p>
       </div>
       <div class="constants">
