@@ -219,6 +219,8 @@ footer a{color:var(--gold)}
 .sec-title{ font-family:var(--serif); font-weight:400; color:var(--navy-ink); font-size:clamp(1.8rem,3.4vw,2.5rem); line-height:1.1; letter-spacing:-.3px; margin-bottom:1.6rem; }
 .sec-title.center{ text-align:center; }
 .sub{ color:var(--slate); font-size:1.05rem; }
+.sub a{ color:var(--navy); font-weight:700; }
+.sub a:hover{ text-decoration:underline; }
 .sub.center{ text-align:center; max-width:620px; margin:-0.6rem auto 2.4rem; }
 .cream{ background:var(--cloud); }
 .cream .value,.cream .quote{ background:#fff; }
