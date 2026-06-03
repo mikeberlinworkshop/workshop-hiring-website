@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
 <title>Join Our Staff! · Spark Academy Lawrence</title>
 <meta name="description" content="Welcome to Spark Academy, Lawrence Public Schools. Current Openings for the 2026-2027 School Year." />
 <link rel="icon" href="assets/spark-logo.png" />
@@ -33,8 +34,9 @@
       <div class="hero-copy">
         <div class="kicker">Lawrence Public Schools</div>
         <h1>Join Our Staff!</h1>
-        <p class="lede">Spark Academy in Lawrence, MA, seeks excellent teachers to join our team of committed, growth-oriented educators.</p>
+        <p class="lede">Spark Academy in Lawrence, MA, seeks excellent teachers to join our team of committed, growth-oriented educators.<span class="es">Bienvenido a Spark Academy!</span></p>
         <a href="#openings" class="btn btn-gold">Current Openings &darr;</a>
+        <p class="npr">Featured on NPR&rsquo;s <em>Only a Game</em></p>
       </div>
       <aside class="recog-badge" aria-label="Massachusetts School of Recognition, 2023">
         <img class="rb-seal" src="assets/recognition-seal.png" alt="Massachusetts School of Recognition 2023" />
@@ -47,12 +49,25 @@
   <section id="about" class="cream">
     <div class="wrap narrow">
       <h2 class="sec-title">A School on the Move &mdash; Literally</h2>
-      <p class="prose">About 13 years ago, Lawrence Public Schools went under receivership in order to help turn around schools from chronic underperformance. As part of this process, school leaders were asked help improve schools within the district in order to optimize student learning. During this period of transformation in the district, Spark Academy was founded. Within two years of opening, Spark Academy went from a level 4 to a level 1 school, the highest designation in the state, and in 2023, we were named a school of recognition for our achievement growth. This is a distinction earned by only 4% of schools in the state.</p>
+      <p class="prose">Within two years of opening, Spark Academy went from <b>a level 4 to a level 1 school, the highest designation in the state</b>, and in 2023, we were named a school of recognition for our achievement growth. This is a distinction earned by only 4% of schools in the state.</p>
+      <p class="prose">About 13 years ago, Lawrence Public Schools went under receivership in order to help turn around schools from chronic underperformance. As part of this process, school leaders were asked help improve schools within the district in order to optimize student learning. During this period of transformation in the district, Spark Academy was founded.</p>
       <p class="prose"><b>What makes Spark Academy special?</b> Our positive, growth-oriented staff, our focus on movement, a deep commitment to research-driven educational practices and, of course &mdash; our students!</p>
     </div>
   </section>
 
-  <section id="openings">
+  <section id="experience">
+    <div class="wrap">
+      <h2 class="sec-title center">Student Experience</h2>
+      <p class="sub center">Learn more about what makes Spark Academy Lawrence shine!</p>
+      <div class="photo-grid">
+        <div class="photo"><img src="assets/day-1.jpg" alt="Spark Academy students in class" loading="lazy" /></div>
+        <div class="photo"><img src="assets/day-2.jpg" alt="Spark Academy students moving in class" loading="lazy" /></div>
+        <div class="photo"><img src="assets/day-3.jpg" alt="A Spark Academy student working at a standing desk" loading="lazy" /></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="openings" class="cream">
     <div class="wrap narrow">
       <h2 class="sec-title">Current Openings for the 2026-2027 School Year:</h2>
       <div class="role-grid">
@@ -122,6 +137,8 @@
         <form name="spark-apply" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="applyForm">
           <input type="hidden" name="form-name" value="spark-apply" />
           <input type="hidden" name="role" value="General interest" />
+          <input type="hidden" name="source" id="attribSource" value="direct" />
+          <input type="hidden" name="came_from" id="attribReferrer" value="" />
           <p class="hp"><label>Don't fill this out: <input name="bot-field" /></label></p>
           <div class="field row">
             <div class="field"><label for="first">First name <span class="req">*</span></label>
@@ -134,7 +151,7 @@
           <div class="field"><label for="phone">Phone</label>
             <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(978) 555-0123" /></div>
           <div class="field"><label for="role_sel">What would you like to teach?</label>
-            <select id="role_sel" name="role_interest"><option value="">Select an area…</option><option>Elementary (K–5)</option><option>Middle grades (6–8)</option><option>ESL / Sheltered English (SEI)</option><option>Bilingual / Dual Language</option><option>Special Education</option><option>Math</option><option>Science</option><option>English / Literacy</option><option>Specialist (Art, Music, PE, etc.)</option><option>Paraprofessional / Support</option><option>Other / Not sure yet</option></select></div>
+            <select id="role_sel" name="role_interest"><option value="">Select an area…</option><option>Middle grades (6–8)</option><option>ESL / Sheltered English (SEI)</option><option>Bilingual / Dual Language</option><option>Special Education</option><option>Math</option><option>Science</option><option>English / Literacy</option><option>Specialist (Art, Music, PE, etc.)</option><option>Paraprofessional / Support</option><option>Other / Not sure yet</option></select></div>
           <div class="field"><label for="cert">Certifications or languages (optional)</label>
             <input id="cert" name="certifications" placeholder="e.g. MA licensed, ESL/SEI, Spanish bilingual" /></div>
           <div class="field"><label for="msg">Why Spark? (optional)</label>
