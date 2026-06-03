@@ -260,10 +260,6 @@ footer a{color:var(--gold)}
 .recog-badge .rb-title{ font-family:var(--serif); font-weight:400; color:#fff; font-size:1.3rem; line-height:1.1; }
 .recog-badge .rb-sub{ color:var(--gold); font-weight:700; font-size:.9rem; margin-top:.35rem; }
 
-/* NPR proof line under the hero CTA */
-.hero .npr{ margin-top:1.2rem; font-size:.92rem; font-weight:600; color:rgba(255,255,255,.75); }
-.hero .npr em{ font-style:italic; color:rgba(255,255,255,.9); }
-
 /* Mobile polish */
 @media(max-width:640px){
   section{ padding:3.2rem 0; }
