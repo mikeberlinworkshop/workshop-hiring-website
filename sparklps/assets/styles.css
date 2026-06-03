@@ -202,34 +202,23 @@ footer a{color:var(--gold)}
   body{padding-bottom:4.5rem}
 }
 
-/* === School re-skin: less corporate, more school (Eleanor, 2026-06-03) === */
-:root{ --shadow:0 6px 16px -12px rgba(4,56,107,.20); }
-body{ background:#fff; }
+/* === Polished restore (Mike likes the old look) — verbatim content === */
+:root{ --shadow:0 18px 50px -24px rgba(4,56,107,.45); }
 
-/* Hero: light, warm, flat, shield-forward */
-.hero{ background:var(--cloud); color:var(--ink); border-bottom:5px solid var(--gold); }
-.hero::before{ display:none; }
-.hero-inner{ max-width:720px; margin-inline:auto; padding:3rem 0 3.2rem; text-align:center; }
-.hero-shield{ height:90px; width:auto; display:block; margin:0 auto 1.1rem; }
-.hero .kicker{ color:var(--navy); font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:.78rem; margin-bottom:.5rem; }
-.hero h1{ font-family:var(--serif); font-weight:400; color:var(--navy-ink); font-size:clamp(2.1rem,5vw,3rem); line-height:1.08; margin-bottom:.7rem; }
-.hero .lede{ color:var(--slate); font-size:1.12rem; max-width:540px; margin:0 auto 1.5rem; }
-.hero .es{ display:block; color:var(--gold-deep); font-style:italic; margin-top:.25rem; }
+/* Hero: old polished navy gradient + gold eyebrow chip + big serif, verbatim content */
+.hero-inner{ position:relative; max-width:760px; margin:0 auto; padding:5rem 0 5.4rem; text-align:left; }
+.hero-shield{ display:none; }
+.hero .kicker{ display:inline-block; color:var(--gold); background:rgba(253,194,2,.12); border:1px solid rgba(253,194,2,.3); padding:.42rem .95rem; border-radius:999px; font-weight:700; font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; margin-bottom:1.3rem; }
+.hero h1{ font-family:var(--serif); font-weight:400; color:#fff; font-size:clamp(2.6rem,5.6vw,3.9rem); line-height:1.03; letter-spacing:-.5px; margin-bottom:1rem; }
+.hero .lede{ color:rgba(255,255,255,.9); font-size:clamp(1.1rem,2.1vw,1.3rem); max-width:600px; margin-bottom:1.9rem; }
+.hero .es{ display:block; color:var(--gold); font-style:italic; margin-top:.4rem; }
 
-/* Section titles + prose */
-.sec-title{ font-family:var(--serif); font-weight:400; color:var(--navy-ink); font-size:clamp(1.5rem,3vw,2rem); line-height:1.15; margin-bottom:1.3rem; }
+/* Section titles + prose (polished) */
+.sec-title{ font-family:var(--serif); font-weight:400; color:var(--navy-ink); font-size:clamp(1.8rem,3.4vw,2.5rem); line-height:1.1; letter-spacing:-.3px; margin-bottom:1.6rem; }
 .sec-title.center{ text-align:center; }
-.sub{ color:var(--slate); font-size:1.02rem; }
-.sub.center{ text-align:center; max-width:600px; margin:-0.4rem auto 2rem; }
+.sub{ color:var(--slate); font-size:1.05rem; }
+.sub.center{ text-align:center; max-width:620px; margin:-0.6rem auto 2.4rem; }
 .cream{ background:var(--cloud); }
-.prose{ color:var(--ink); font-size:1.05rem; line-height:1.7; margin-bottom:1.1rem; }
+.cream .value,.cream .quote{ background:#fff; }
+.prose{ color:var(--slate); font-size:1.08rem; line-height:1.75; margin-bottom:1.2rem; }
 .prose b{ color:var(--navy-ink); }
-
-/* Flatten cards to a simple school feel */
-.role-card,.value,.quote{ box-shadow:none; }
-.role-card{ border:1px solid var(--line); }
-.role-card:hover{ transform:none; border-color:var(--navy); }
-.role-card h3{ margin-bottom:.35rem; }
-.role-card .role-meta{ color:var(--slate); font-weight:600; margin-bottom:.8rem; }
-.cream .quote,.cream .value{ background:#fff; }
-.apply form{ box-shadow:none; }
