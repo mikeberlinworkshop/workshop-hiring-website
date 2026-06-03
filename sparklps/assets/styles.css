@@ -201,3 +201,35 @@ footer a{color:var(--gold)}
   .mobile-bar .btn{width:100%;justify-content:center}
   body{padding-bottom:4.5rem}
 }
+
+/* === School re-skin: less corporate, more school (Eleanor, 2026-06-03) === */
+:root{ --shadow:0 6px 16px -12px rgba(4,56,107,.20); }
+body{ background:#fff; }
+
+/* Hero: light, warm, flat, shield-forward */
+.hero{ background:var(--cloud); color:var(--ink); border-bottom:5px solid var(--gold); }
+.hero::before{ display:none; }
+.hero-inner{ max-width:720px; margin-inline:auto; padding:3rem 0 3.2rem; text-align:center; }
+.hero-shield{ height:90px; width:auto; display:block; margin:0 auto 1.1rem; }
+.hero .kicker{ color:var(--navy); font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:.78rem; margin-bottom:.5rem; }
+.hero h1{ font-family:var(--serif); font-weight:400; color:var(--navy-ink); font-size:clamp(2.1rem,5vw,3rem); line-height:1.08; margin-bottom:.7rem; }
+.hero .lede{ color:var(--slate); font-size:1.12rem; max-width:540px; margin:0 auto 1.5rem; }
+.hero .es{ display:block; color:var(--gold-deep); font-style:italic; margin-top:.25rem; }
+
+/* Section titles + prose */
+.sec-title{ font-family:var(--serif); font-weight:400; color:var(--navy-ink); font-size:clamp(1.5rem,3vw,2rem); line-height:1.15; margin-bottom:1.3rem; }
+.sec-title.center{ text-align:center; }
+.sub{ color:var(--slate); font-size:1.02rem; }
+.sub.center{ text-align:center; max-width:600px; margin:-0.4rem auto 2rem; }
+.cream{ background:var(--cloud); }
+.prose{ color:var(--ink); font-size:1.05rem; line-height:1.7; margin-bottom:1.1rem; }
+.prose b{ color:var(--navy-ink); }
+
+/* Flatten cards to a simple school feel */
+.role-card,.value,.quote{ box-shadow:none; }
+.role-card{ border:1px solid var(--line); }
+.role-card:hover{ transform:none; border-color:var(--navy); }
+.role-card h3{ margin-bottom:.35rem; }
+.role-card .role-meta{ color:var(--slate); font-weight:600; margin-bottom:.8rem; }
+.cream .quote,.cream .value{ background:#fff; }
+.apply form{ box-shadow:none; }
