@@ -44,8 +44,8 @@
   };
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var body = new URLSearchParams(new FormData(form)).toString();
-    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body })
+    // multipart so the resume file rides along; browser sets the boundary header
+    fetch('/', { method: 'POST', body: new FormData(form) })
       .then(function (res) {
         if (res.ok || res.type === 'opaque') { showSuccess(); }
         else { form.submit(); }

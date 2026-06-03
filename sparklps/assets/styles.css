@@ -153,6 +153,8 @@ label{display:block;font-weight:700;font-size:.85rem;color:var(--navy-ink);margi
 label .req{color:var(--gold-deep)}
 input,select,textarea{width:100%;font-family:var(--sans);font-size:.97rem;color:var(--ink);padding:.8rem .9rem;border:1.5px solid var(--line);border-radius:11px;background:#fdfefe;transition:border .15s,box-shadow .15s}
 input:focus,select:focus,textarea:focus{outline:0;border-color:var(--navy);box-shadow:0 0 0 3px rgba(1,94,175,.12)}
+input[type=file]{padding:.62rem .7rem;font-size:.88rem;background:var(--cloud);cursor:pointer}
+input[type=file]::file-selector-button{font-family:var(--sans);font-weight:700;font-size:.82rem;color:var(--navy-ink);background:var(--gold);border:0;border-radius:999px;padding:.38rem .85rem;margin-right:.7rem;cursor:pointer}
 textarea{resize:vertical;min-height:96px}
 form .btn-gold{width:100%;justify-content:center;margin-top:.4rem;font-size:1.02rem;padding:.95rem}
 .hp{position:absolute;left:-9999px}
