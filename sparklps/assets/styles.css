@@ -226,6 +226,9 @@ footer a{color:var(--gold)}
 .cream .value,.cream .quote{ background:#fff; }
 .prose{ color:var(--slate); font-size:1.08rem; line-height:1.75; margin-bottom:1.2rem; }
 .prose b{ color:var(--navy-ink); }
+.prose a{ color:var(--navy); font-weight:700; }
+.prose a:hover{ text-decoration:underline; }
+.article-link{ font-size:.98rem; }
 
 /* Hero two-column with Massachusetts School of Recognition medallion */
 .hero-grid{ display:grid; grid-template-columns:1.25fr .85fr; gap:3rem; align-items:center; max-width:1040px; text-align:left; }
