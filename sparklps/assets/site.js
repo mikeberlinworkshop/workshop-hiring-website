@@ -20,8 +20,11 @@
     var srcField = document.getElementById('attribSource');
     var refField = document.getElementById('attribReferrer');
     if (srcField) {
+      // Keep utm_content (the Meta ad name, e.g. spark-role-intent) so every
+      // landing-page lead records which creative drove it, not just the channel.
       var label = stored.src || stored.ref ||
-        [stored.utm_source, stored.utm_medium, stored.utm_campaign].filter(Boolean).join(' / ');
+        [stored.utm_source, stored.utm_medium, stored.utm_campaign, stored.utm_content]
+          .filter(Boolean).join(' / ');
       srcField.value = label || 'direct';
     }
     if (refField) {
