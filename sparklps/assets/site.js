@@ -44,6 +44,18 @@
     var ok = document.getElementById('successMsg');
     ok.classList.add('show');
     ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // GA4 conversion: fires only after Netlify accepted the submission, so
+    // GA lead counts stay comparable to the Netlify form inbox.
+    try {
+      if (typeof gtag === 'function') {
+        var roleField = form.querySelector('input[name="role"]');
+        var srcField = document.getElementById('attribSource');
+        gtag('event', 'generate_lead', {
+          role: roleField ? roleField.value : '',
+          lead_source: srcField ? srcField.value : 'direct'
+        });
+      }
+    } catch (e) { /* analytics is best-effort */ }
   };
   form.addEventListener('submit', function (e) {
     e.preventDefault();
