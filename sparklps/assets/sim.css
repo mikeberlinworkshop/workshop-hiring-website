@@ -1,0 +1,64 @@
+/* Classroom sim — extends the Spark tokens in styles.css */
+.sim-shell{max-width:680px;margin-inline:auto;padding:2.2rem 0 4rem}
+.sim-progress{display:flex;gap:.4rem;margin-bottom:1.6rem}
+.sim-progress span{flex:1;height:6px;border-radius:999px;background:rgba(1,94,175,.14)}
+.sim-progress span.done{background:var(--gold)}
+.sim-progress span.now{background:var(--navy)}
+.sim-kicker{color:var(--navy);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.74rem;margin-bottom:.5rem}
+.sim-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:2rem 1.7rem;box-shadow:var(--shadow)}
+.sim-card h1,.sim-card h2{font-family:var(--serif);font-weight:400;color:var(--navy-ink);line-height:1.15;margin-bottom:.8rem}
+.sim-card h1{font-size:clamp(1.7rem,4vw,2.3rem)}
+.sim-card h2{font-size:clamp(1.4rem,3vw,1.8rem)}
+.sim-card p{color:var(--slate);margin-bottom:1rem}
+.sim-meta{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.2rem 0 1.6rem}
+.sim-meta span{font-size:.8rem;font-weight:700;color:var(--navy);background:rgba(1,94,175,.08);border:1px solid var(--line);border-radius:999px;padding:.3rem .8rem}
+
+/* Act 1 student work */
+.sim-work{border:1.5px dashed rgba(1,94,175,.3);border-radius:14px;background:#fffdf4;padding:1.2rem 1.4rem;margin:1.2rem 0 1.6rem;font-family:'Comic Sans MS','Bradley Hand',cursive;font-size:1.15rem;color:#2c3e50}
+.sim-work .ln{display:flex;justify-content:space-between;align-items:center;padding:.35rem 0}
+.sim-work .ln + .ln{border-top:1px solid rgba(1,94,175,.08)}
+.sim-work .nm{font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-bottom:.5rem}
+
+/* chat */
+.sim-chat{display:flex;flex-direction:column;gap:.9rem;margin:1.2rem 0}
+.sim-bubble{max-width:88%;border-radius:16px;padding:.85rem 1.1rem;line-height:1.5;animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+.sim-bubble .who{display:block;font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.25rem;opacity:.7}
+.sim-bubble.them{align-self:flex-start;background:var(--cloud);border:1px solid var(--line);color:var(--ink)}
+.sim-bubble.you{align-self:flex-end;background:var(--navy);color:#fff}
+.sim-bubble .note{display:block;margin-top:.4rem;font-size:.82rem;font-style:italic;opacity:.75}
+
+/* choices + free text */
+.sim-q{font-weight:700;color:var(--navy-ink);margin:1.2rem 0 .7rem}
+.sim-opts{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.2rem}
+.sim-opt{text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:.85rem 1rem;font:inherit;font-size:.95rem;color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s,transform .1s}
+.sim-opt:hover{border-color:var(--navy);transform:translateY(-1px)}
+.sim-opt.picked{border-color:var(--navy);background:rgba(1,94,175,.07);font-weight:600}
+.sim-field{margin-bottom:1.3rem}
+.sim-field label{display:block;font-weight:700;color:var(--navy-ink);margin-bottom:.5rem}
+.sim-field textarea{width:100%;min-height:120px;border:1.5px solid var(--line);border-radius:12px;padding:.85rem 1rem;font:inherit;font-size:.97rem;resize:vertical}
+.sim-field textarea:focus{outline:none;border-color:var(--navy)}
+.sim-field .hint{font-size:.82rem;color:var(--slate);margin-top:.35rem}
+.sim-field input{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:.75rem 1rem;font:inherit}
+.sim-actions{display:flex;justify-content:flex-end;gap:.8rem;margin-top:1.4rem}
+.sim-actions .btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+.sim-err{color:#b3261e;font-size:.88rem;font-weight:600;margin-right:auto;align-self:center;display:none}
+.sim-err.show{display:block}
+
+/* review / evidence pack */
+.ep-head{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:baseline;margin-bottom:1.4rem}
+.ep-head .cand{font-family:var(--serif);font-size:1.6rem;color:var(--navy-ink)}
+.ep-head .meta{font-size:.88rem;color:var(--slate);font-weight:600}
+.ep-dim{border:1px solid var(--line);border-radius:14px;padding:1.2rem 1.3rem;margin-bottom:1rem;background:#fff}
+.ep-dim .row{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:.6rem}
+.ep-dim h3{font-family:var(--serif);font-weight:400;font-size:1.15rem;color:var(--navy-ink)}
+.ep-pips{display:flex;gap:.3rem}
+.ep-pips i{width:26px;height:10px;border-radius:999px;background:rgba(1,94,175,.12)}
+.ep-pips i.on{background:var(--gold)}
+.ep-quote{border-left:3px solid var(--gold);background:var(--cloud);border-radius:0 10px 10px 0;padding:.6rem .9rem;margin:.5rem 0;font-size:.92rem;color:var(--ink)}
+.ep-quote .src{display:block;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);margin-bottom:.2rem}
+.ep-flag{background:rgba(179,38,30,.07);border:1px solid rgba(179,38,30,.25);color:#7a1c16;border-radius:10px;padding:.6rem .9rem;font-size:.9rem;margin-bottom:.6rem}
+.ep-next{background:rgba(253,194,2,.1);border:1px solid rgba(253,194,2,.45);border-radius:14px;padding:1.1rem 1.3rem;margin-top:1.4rem}
+.ep-next h3{font-family:var(--serif);font-weight:400;color:var(--navy-ink);margin-bottom:.5rem}
+.ep-next li{margin:.4rem 0 .4rem 1.1rem;color:var(--ink);font-size:.95rem}
+.ep-honest{font-size:.84rem;color:var(--slate);border-top:1px solid var(--line);margin-top:1.6rem;padding-top:1rem}
+@media(max-width:640px){.sim-card{padding:1.4rem 1.1rem}.sim-bubble{max-width:100%}}

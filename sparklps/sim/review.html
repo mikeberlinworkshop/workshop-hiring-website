@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Sim Evidence Pack · Spark Academy Hiring</title>
+<link rel="icon" href="../assets/spark-logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/styles.css" />
+<link rel="stylesheet" href="../assets/sim.css" />
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="../index.html#top">
+      <img src="../assets/spark-logo.png" alt="Spark Academy" />
+      <span class="bn">Spark Academy<small>Hiring Team · Internal</small></span>
+    </a>
+  </div>
+</header>
+<main>
+  <div class="wrap sim-shell">
+    <p class="sim-kicker">Classroom Sim · Evidence Pack</p>
+    <div id="pack"></div>
+  </div>
+</main>
+<script src="../assets/sim.js"></script>
+<script>
+(function () {
+  // Renders the most recent local sim attempt, or a worked sample with
+  // ?demo=1 so principals can see the artifact before any candidate runs it.
+  var DEMO = {
+    version: 'sim-v0', pack: 'math', roleLabel: 'Middle School Math (Grades 6–8)',
+    candidate: { name: 'Sample Candidate', email: 'sample@example.com' },
+    responses: {
+      a1q1: 'Jayden understands how to add fractions when the denominators already match — the first one is right. The misconception is that he adds across: numerator plus numerator, denominator plus denominator. It makes sense to him because that is exactly how multiplication works.',
+      a1q2: 'I would cover the answers and ask him to estimate: is 3/4 + 2/5 more or less than 1? He knows 3/4 is close to a whole, so his own estimate will collide with 5/9 and he will want to know why.',
+      a2q1: 'Your way makes total sense for multiplying, Maria — that is the frustrating part. But the bottom number is not a count, it is the size of the piece. Fourths and fifths are different sizes, so we cannot count them together until we cut them into the same size. Want to draw it?',
+      a3q1: 'I would add fraction tiles and a number line at every table, and pre-teach the estimation warm-up to my five IEP students during intervention so they walk in having seen it. What stays the same: every student, including all five, works toward the same grade-level goal on the same problems.'
+    },
+    choices: { c1: 'c1a', c2: 'c2a', c3: 'c3a' },
+    timings: { artifact: 178, moment: 295, adapt: 154 }
+  };
+
+  var DIM_BLURBS = {
+    diagnose: 'Can they read what a student understands, not just what they got wrong?',
+    mindset: 'Asset framing and high expectations under pressure.',
+    respond: 'Does the next move respond to this student’s thinking?',
+    scaffold: 'Access for every learner without lowering the goal.'
+  };
+
+  var raw = null;
+  if (new URLSearchParams(location.search).get('demo')) {
+    var p = SparkSim.buildPayload(SparkSim.PACKS[DEMO.pack], DEMO);
+    p.candidate = DEMO.candidate;
+    raw = p;
+  } else {
+    try { raw = JSON.parse(localStorage.getItem('spark_sim_last')); } catch (e) {}
+  }
+
+  var root = document.getElementById('pack');
+  function el(tag, cls, html) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (html !== undefined) n.innerHTML = html;
+    return n;
+  }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  if (!raw) {
+    var none = el('div', 'sim-card');
+    none.appendChild(el('h2', null, 'No sim attempt on this device'));
+    none.appendChild(el('p', null, 'Complete <a href="index.html">the sim</a> first, or open <a href="review.html?demo=1">the sample evidence pack</a>.'));
+    root.appendChild(none);
+    return;
+  }
+
+  var card = el('div', 'sim-card');
+  var mins = Math.round((raw.totalSeconds || 0) / 60);
+  var head = el('div', 'ep-head');
+  head.appendChild(el('div', 'cand', esc(raw.candidate.name || 'Unknown candidate')));
+  head.appendChild(el('div', 'meta', esc(raw.roleLabel) + ' · completed in ~' + mins + ' min · ' + esc((raw.submittedAt || '').slice(0, 10))));
+  card.appendChild(head);
+
+  (raw.flags || []).forEach(function (f) {
+    card.appendChild(el('div', 'ep-flag', '&#9888; ' + esc(f)));
+  });
+
+  Object.keys(SparkSim.DIMS).forEach(function (dim) {
+    var d = el('div', 'ep-dim');
+    var row = el('div', 'row');
+    var h = el('div');
+    h.appendChild(el('h3', null, esc(SparkSim.DIMS[dim])));
+    h.appendChild(el('p', null, '<small>' + esc(DIM_BLURBS[dim]) + '</small>'));
+    row.appendChild(h);
+    var pips = el('div', 'ep-pips');
+    pips.setAttribute('aria-label', SparkSim.DIMS[dim] + ': ' + raw.scores[dim] + ' of 4');
+    for (var i = 1; i <= 4; i++) pips.appendChild(el('i', i <= raw.scores[dim] ? 'on' : ''));
+    row.appendChild(pips);
+    d.appendChild(row);
+    (raw.evidence[dim] || []).forEach(function (ev) {
+      var q = el('div', 'ep-quote');
+      q.appendChild(el('span', 'src', esc(ev.source)));
+      q.appendChild(document.createTextNode(ev.quote));
+      d.appendChild(q);
+    });
+    card.appendChild(d);
+  });
+
+  if ((raw.followUps || []).length) {
+    var nx = el('div', 'ep-next');
+    nx.appendChild(el('h3', null, 'Bring to the interview'));
+    var ul = el('ul');
+    raw.followUps.forEach(function (f) { ul.appendChild(el('li', null, esc(f.question))); });
+    nx.appendChild(ul);
+    card.appendChild(nx);
+  }
+
+  card.appendChild(el('p', 'ep-honest',
+    'Scores are prototype heuristics (v0) — read the quotes, not just the pips. ' +
+    'This pack shows how a candidate thinks about students and math in ~10 minutes; it cannot ' +
+    'measure presence, relationships, or follow-through. Use it to decide who gets a conversation ' +
+    'and what to ask them — not to reject anyone outright.'));
+  root.appendChild(card);
+})();
+</script>
+</body>
+</html>

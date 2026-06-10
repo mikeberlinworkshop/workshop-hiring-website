@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3S6EZKSRLQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-3S6EZKSRLQ');
+</script>
+<title>Classroom Sim · Spark Academy Lawrence</title>
+<meta name="description" content="A 10-minute interactive classroom simulation for teacher candidates at Spark Academy in Lawrence, MA. No video, no trick questions — just teaching." />
+<link rel="icon" href="../assets/spark-logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/styles.css" />
+<link rel="stylesheet" href="../assets/sim.css" />
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="../index.html#top">
+      <img src="../assets/spark-logo.png" alt="Spark Academy" />
+      <span class="bn">Spark Academy<small>Lawrence Public Schools</small></span>
+    </a>
+  </div>
+</header>
+<main>
+  <div class="wrap sim-shell">
+    <div class="sim-progress" id="progress" hidden>
+      <span data-step="0"></span><span data-step="1"></span><span data-step="2"></span><span data-step="3"></span>
+    </div>
+    <div id="stage"></div>
+  </div>
+</main>
+
+<!-- Static mirror of the sim submission so Netlify's build bot registers the
+     form; the live submission is posted by JS with these same field names. -->
+<form name="spark-sim" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="spark-sim" />
+  <input name="bot-field" />
+  <input name="candidate_name" /><input name="email" /><input name="role" />
+  <input name="scores" /><input name="duration_seconds" /><input name="source" />
+  <textarea name="payload"></textarea>
+</form>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="../index.html#top">
+      <img src="../assets/spark-logo.png" alt="Spark Academy" style="height:36px" />
+      <span class="bn">Spark Academy<small style="color:rgba(255,255,255,.6)">Lawrence Public Schools</small></span>
+    </a>
+    <div>165 Crawford Street · Lawrence, Massachusetts 01840 · <a href="/privacy/">Privacy</a></div>
+  </div>
+</footer>
+
+<script src="../assets/sim.js"></script>
+<script>
+(function () {
+  var pack = SparkSim.PACKS[new URLSearchParams(location.search).get('pack') || 'math'] || SparkSim.PACKS.math;
+  var stage = document.getElementById('stage');
+  var progress = document.getElementById('progress');
+  var state = { responses: {}, choices: {}, timings: {}, candidate: {} };
+  var actStart = null;
+
+  function el(tag, cls, html) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (html !== undefined) n.innerHTML = html;
+    return n;
+  }
+  function setProgress(step) {
+    progress.hidden = false;
+    progress.querySelectorAll('span').forEach(function (s, i) {
+      s.className = i < step ? 'done' : (i === step ? 'now' : '');
+    });
+  }
+  function clockAct(actId) {
+    var now = Date.now();
+    if (actStart) state.timings[actStart.id] = Math.round((now - actStart.t) / 1000);
+    actStart = actId ? { id: actId, t: now } : null;
+  }
+  function wordsOk(text) { return String(text || '').trim().split(/\s+/).filter(Boolean).length >= 5; }
+
+  // ---- screens ----------------------------------------------------------
+
+  function intro() {
+    var card = el('div', 'sim-card');
+    card.appendChild(el('p', 'sim-kicker', 'Spark Academy · Classroom Sim'));
+    card.appendChild(el('h1', null, 'Spend 10 minutes in our classroom.'));
+    card.appendChild(el('p', null, 'Three short scenes from a real teaching day: a piece of student work, a moment with a frustrated student, and a plan that needs adapting. There are no trick questions and no “right” personality — we want to see how you think about students and math.'));
+    var meta = el('div', 'sim-meta');
+    ['~' + pack.minutes + ' minutes', 'No video or audio', 'No login', pack.roleLabel].forEach(function (t) {
+      meta.appendChild(el('span', null, t));
+    });
+    card.appendChild(meta);
+    card.appendChild(el('p', null, 'Your responses go only to the Spark Academy hiring team, alongside your application. Honest beats polished.'));
+    var actions = el('div', 'sim-actions');
+    var btn = el('button', 'btn btn-gold', 'Start the sim &rarr;');
+    btn.id = 'startBtn';
+    btn.onclick = function () { setProgress(0); clockAct(pack.acts[0].id); renderAct(0); };
+    actions.appendChild(btn);
+    card.appendChild(actions);
+    stage.replaceChildren(card);
+  }
+
+  function actHeader(card, act) {
+    card.appendChild(el('p', 'sim-kicker', act.kicker));
+    card.appendChild(el('h2', null, act.title));
+    card.appendChild(el('p', null, act.intro));
+  }
+
+  function promptFields(card, prompts) {
+    prompts.forEach(function (p) {
+      var f = el('div', 'sim-field');
+      var label = el('label', null, p.label);
+      label.htmlFor = p.id;
+      var ta = el('textarea');
+      ta.id = p.id;
+      ta.placeholder = p.placeholder || '';
+      f.appendChild(label); f.appendChild(ta);
+      if (p.placeholder) f.appendChild(el('p', 'hint', p.placeholder));
+      card.appendChild(f);
+    });
+  }
+
+  function collectPrompts(card, prompts, err) {
+    var ok = true;
+    prompts.forEach(function (p) {
+      var v = card.querySelector('#' + p.id).value;
+      if (!wordsOk(v)) ok = false;
+      state.responses[p.id] = v.trim();
+    });
+    err.classList.toggle('show', !ok);
+    return ok;
+  }
+
+  function renderAct(idx) {
+    var act = pack.acts[idx];
+    setProgress(idx);
+    if (act.id === 'moment') return renderMoment(idx, act);
+
+    var card = el('div', 'sim-card');
+    actHeader(card, act);
+    if (act.work) {
+      var w = el('div', 'sim-work');
+      w.appendChild(el('div', 'nm', 'Jayden · Practice set 4B'));
+      act.work.forEach(function (ln) {
+        w.appendChild(el('div', 'ln', '<span>' + ln.problem + '</span><span>' + ln.answer + '</span>'));
+      });
+      card.appendChild(w);
+    }
+    promptFields(card, act.prompts);
+    var actions = el('div', 'sim-actions');
+    var err = el('p', 'sim-err', 'Give us at least a sentence for each — short is fine, blank isn’t.');
+    var btn = el('button', 'btn btn-gold', 'Continue &rarr;');
+    btn.onclick = function () {
+      if (!collectPrompts(card, act.prompts, err)) return;
+      advance(idx);
+    };
+    actions.appendChild(err); actions.appendChild(btn);
+    card.appendChild(actions);
+    stage.replaceChildren(card);
+    window.scrollTo({ top: 0 });
+  }
+
+  function renderMoment(idx, act) {
+    var card = el('div', 'sim-card');
+    actHeader(card, act);
+    var chat = el('div', 'sim-chat');
+    card.appendChild(chat);
+    var slot = el('div'); // active choice/free-text UI lives here, below the chat
+    card.appendChild(slot);
+    stage.replaceChildren(card);
+    window.scrollTo({ top: 0 });
+
+    function bubble(side, who, text, note) {
+      var b = el('div', 'sim-bubble ' + side);
+      b.appendChild(el('span', 'who', who));
+      b.appendChild(document.createTextNode(text));
+      if (note) b.appendChild(el('span', 'note', note));
+      chat.appendChild(b);
+      b.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+
+    var i = 0;
+    function next() {
+      slot.replaceChildren();
+      if (i >= act.steps.length) {
+        var actions = el('div', 'sim-actions');
+        var btn = el('button', 'btn btn-gold', 'Continue &rarr;');
+        btn.onclick = function () { advance(idx); };
+        actions.appendChild(btn);
+        slot.appendChild(actions);
+        return;
+      }
+      var step = act.steps[i++];
+      if (step.type === 'say') {
+        bubble('them', step.who, step.text, step.note);
+        setTimeout(next, 350);
+      } else if (step.type === 'choice') {
+        slot.appendChild(el('p', 'sim-q', step.label));
+        var opts = el('div', 'sim-opts');
+        step.options.forEach(function (o) {
+          var b = el('button', 'sim-opt', o.text);
+          b.dataset.opt = o.id;
+          b.onclick = function () {
+            state.choices[step.id] = o.id;
+            bubble('you', 'You', o.text.replace(/^“|”$/g, ''));
+            if (o.reply) bubble('them', 'Maria', o.reply);
+            next();
+          };
+          opts.appendChild(b);
+        });
+        slot.appendChild(opts);
+      } else if (step.type === 'free') {
+        bubble('them', step.who, step.text);
+        var f = el('div', 'sim-field');
+        var label = el('label', null, step.label);
+        label.htmlFor = step.id;
+        var ta = el('textarea');
+        ta.id = step.id;
+        ta.placeholder = step.placeholder || '';
+        f.appendChild(label); f.appendChild(ta);
+        var actions = el('div', 'sim-actions');
+        var err = el('p', 'sim-err', 'Give her a real answer — at least a sentence.');
+        var btn = el('button', 'btn btn-gold', 'Say it');
+        btn.onclick = function () {
+          if (!wordsOk(ta.value)) { err.classList.add('show'); return; }
+          state.responses[step.id] = ta.value.trim();
+          bubble('you', 'You', ta.value.trim());
+          next();
+        };
+        actions.appendChild(err); actions.appendChild(btn);
+        f.appendChild(actions);
+        slot.appendChild(f);
+        ta.focus();
+      }
+    }
+    next();
+  }
+
+  function advance(idx) {
+    if (idx + 1 < pack.acts.length) {
+      clockAct(pack.acts[idx + 1].id);
+      renderAct(idx + 1);
+    } else {
+      clockAct(null);
+      identity();
+    }
+  }
+
+  function identity() {
+    setProgress(3);
+    var card = el('div', 'sim-card');
+    card.appendChild(el('p', 'sim-kicker', 'Last step'));
+    card.appendChild(el('h2', null, 'That’s the sim. Who should we credit it to?'));
+    card.appendChild(el('p', null, 'We’ll match this to your application. Nothing here is shared outside the Spark Academy hiring team.'));
+    var fName = el('div', 'sim-field');
+    fName.appendChild(el('label', null, 'Full name'));
+    var name = el('input'); name.id = 'candName'; name.autocomplete = 'name';
+    fName.appendChild(name);
+    var fMail = el('div', 'sim-field');
+    fMail.appendChild(el('label', null, 'Email'));
+    var mail = el('input'); mail.id = 'candEmail'; mail.type = 'email'; mail.autocomplete = 'email';
+    fMail.appendChild(mail);
+    card.appendChild(fName); card.appendChild(fMail);
+    var actions = el('div', 'sim-actions');
+    var err = el('p', 'sim-err', 'We need a name and a valid email to match your application.');
+    var btn = el('button', 'btn btn-gold', 'Submit my sim &rarr;');
+    btn.id = 'submitBtn';
+    btn.onclick = function () {
+      if (!name.value.trim() || mail.value.indexOf('@') < 1) { err.classList.add('show'); return; }
+      state.candidate = { name: name.value.trim(), email: mail.value.trim() };
+      btn.disabled = true;
+      submit();
+    };
+    actions.appendChild(err); actions.appendChild(btn);
+    card.appendChild(actions);
+    stage.replaceChildren(card);
+    window.scrollTo({ top: 0 });
+  }
+
+  function submit() {
+    var payload = SparkSim.buildPayload(pack, state);
+    try { localStorage.setItem('spark_sim_last', JSON.stringify(payload)); } catch (e) {}
+    var body = new URLSearchParams({
+      'form-name': 'spark-sim',
+      candidate_name: payload.candidate.name,
+      email: payload.candidate.email,
+      role: payload.roleLabel,
+      scores: JSON.stringify(payload.scores),
+      duration_seconds: String(payload.totalSeconds),
+      source: 'sim',
+      payload: JSON.stringify(payload)
+    });
+    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body })
+      .then(function () { done(); })
+      .catch(function () { done(); }); // local preview has no backend; payload is in localStorage
+    try {
+      if (typeof gtag === 'function') gtag('event', 'sim_complete', { pack: payload.pack });
+    } catch (e) {}
+  }
+
+  function done() {
+    var card = el('div', 'sim-card');
+    card.id = 'doneCard';
+    card.appendChild(el('p', 'sim-kicker', 'Submitted'));
+    card.appendChild(el('h2', null, 'Thank you — that’s exactly what we needed.'));
+    card.appendChild(el('p', null, 'Your responses are with the Spark Academy hiring team. If your application is a match, the next step is a conversation — and we’ll pick up right where this sim left off.'));
+    card.appendChild(el('p', null, '<a href="../index.html#openings">&larr; Back to open roles</a>'));
+    // Prototype-only: lets stakeholders demo the principal side of this attempt.
+    card.appendChild(el('p', null, '<small><a href="review.html" id="reviewLink">Prototype: view the evidence pack this generates for the hiring team &rarr;</a></small>'));
+    stage.replaceChildren(card);
+    window.scrollTo({ top: 0 });
+  }
+
+  intro();
+})();
+</script>
+</body>
+</html>
