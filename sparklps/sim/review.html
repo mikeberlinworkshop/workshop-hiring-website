@@ -111,6 +111,12 @@
       q.appendChild(document.createTextNode(ev.quote));
       d.appendChild(q);
     });
+    (raw.aiEvidence || []).filter(function (ev) { return ev.dim === dim; }).forEach(function (ev) {
+      var q = el('div', 'ep-quote');
+      q.appendChild(el('span', 'src', 'AI scorer — why this matters'));
+      q.appendChild(document.createTextNode('“' + ev.quote + '” — ' + ev.rationale));
+      d.appendChild(q);
+    });
     card.appendChild(d);
   });
 
@@ -124,7 +130,9 @@
   }
 
   card.appendChild(el('p', 'ep-honest',
-    'Scores are prototype heuristics (v0) — read the quotes, not just the pips. ' +
+    (raw.scorer === 'ai-v1'
+      ? 'Scores by the AI scorer (v1) — read the quotes, not just the pips. '
+      : 'Scores are prototype heuristics (v0) — read the quotes, not just the pips. ') +
     'This pack shows how a candidate thinks about students and math in ~10 minutes; it cannot ' +
     'measure presence, relationships, or follow-through. Use it to decide who gets a conversation ' +
     'and what to ask them — not to reject anyone outright.'));

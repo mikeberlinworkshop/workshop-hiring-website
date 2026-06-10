@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "test": "node tests/sim.test.mjs",
+    "test": "node tests/sim.test.mjs && node tests/scorer.test.mjs",
     "test:e2e": "node tests/e2e.mjs"
   },
   "devDependencies": {
     "playwright": "^1.60.0"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.104.1"
   }
 }

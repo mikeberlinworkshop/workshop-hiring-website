@@ -67,12 +67,15 @@ scored by transparent keyword/feature heuristics in `sparklps/assets/sim.js`
 (`scoreFreeText`). Good enough to demo the evidence pack end to end; not good enough to
 rank candidates. The evidence pack labels it as such.
 
-**v1 (next):** replace `scoreFreeText` with a server-side Claude call (the engine
-isolates this seam). Scoring prompt shape: system = rubric + anchor responses at each
-level (collected from Spark's own strong teachers answering the sim), user = candidate's
-verbatim response + the artifact context; output = per-dimension score, the quote that
-justifies it, and one suggested interview follow-up. Choice-point deltas stay as-is —
-they're already deterministic.
+**v1 (implemented):** `netlify/functions/score-sim.mjs` scores the full attempt with
+Claude (Opus 4.8, adaptive thinking, structured output): system = rubric + level
+anchors, user = the candidate's verbatim responses + choice path + artifact context;
+output = per-dimension scores, verbatim justifying quotes with rationale, flags, and
+interview follow-ups built from the candidate's own words. The client treats it as
+best-effort with a 12s timeout — if the function is unreachable or `ANTHROPIC_API_KEY`
+isn't set on the Netlify site, the v0 heuristic scores stand and the candidate is never
+blocked. The evidence pack labels which scorer produced it. Next refinement: collect
+anchor responses from Spark's own strong teachers and fold them into the system prompt.
 
 **Anti-gaming posture:** per-act timing is recorded (pasted-in AI answers at 40 wpm look
 different from typed-at-speed answers); follow-up interview questions are generated from

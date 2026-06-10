@@ -286,8 +286,36 @@
     window.scrollTo({ top: 0 });
   }
 
+  // v1 AI scorer (Netlify function). Best-effort with a hard timeout: if the
+  // function is missing, unconfigured, or slow, the v0 heuristic scores in the
+  // payload stand and the candidate is never blocked.
+  function aiScore() {
+    var ctrl = ('AbortController' in window) ? new AbortController() : null;
+    if (ctrl) setTimeout(function () { ctrl.abort(); }, 12000);
+    return fetch('/.netlify/functions/score-sim', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      signal: ctrl && ctrl.signal,
+      body: JSON.stringify({ pack: pack.id, responses: state.responses, choices: state.choices })
+    }).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+  }
+
   function submit() {
     var payload = SparkSim.buildPayload(pack, state);
+    payload.scorer = 'heuristic-v0';
+    aiScore().then(function (ai) {
+      if (ai && ai.scores) {
+        payload.scorer = ai.scorer || 'ai-v1';
+        payload.scores = ai.scores;
+        payload.flags = ai.flags;
+        payload.followUps = ai.followUps;
+        payload.aiEvidence = ai.evidence;
+      }
+      deliver(payload);
+    });
+  }
+
+  function deliver(payload) {
     try { localStorage.setItem('spark_sim_last', JSON.stringify(payload)); } catch (e) {}
     var body = new URLSearchParams({
       'form-name': 'spark-sim',
@@ -296,7 +324,7 @@
       role: payload.roleLabel,
       scores: JSON.stringify(payload.scores),
       duration_seconds: String(payload.totalSeconds),
-      source: 'sim',
+      source: payload.scorer,
       payload: JSON.stringify(payload)
     });
     fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: body })
