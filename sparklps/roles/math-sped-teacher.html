@@ -102,8 +102,10 @@
             <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(978) 555-0123" /></div>
           <div class="field"><label for="role_sel">What would you like to teach?</label>
             <select id="role_sel" name="role_interest"><option value="">Select an area…</option><option>Middle grades (6–8)</option><option>ESL / Sheltered English (SEI)</option><option>Bilingual / Dual Language</option><option>Special Education</option><option selected>Math</option><option>Science</option><option>History / Social Studies</option><option>English / Literacy</option><option>Specialist (Art, Music, PE, etc.)</option><option>Paraprofessional / Support</option><option>Other / Not sure yet</option></select></div>
-          <div class="field"><label for="cert">Certifications or languages (optional)</label>
-            <input id="cert" name="certifications" placeholder="e.g. MA licensed, ESL/SEI, Spanish bilingual" /></div>
+          <div class="field"><label for="ma_license">Do you hold a Massachusetts teaching license? <span class="req">*</span></label>
+            <select id="ma_license" name="ma_license" required><option value="">Select one...</option><option value="yes">Yes</option><option value="other_state">No, licensed in another state</option><option value="in_progress">In progress</option><option value="none">No license yet</option></select></div>
+          <div class="field"><label for="license_detail">License details, certifications, or languages (optional)</label>
+            <input id="license_detail" name="license_detail" placeholder="e.g. MA Math 5-8, NH science, SEI, Spanish bilingual" /></div>
           <div class="field row">
             <div class="field"><label for="li">LinkedIn (optional)</label>
               <input id="li" name="linkedin" type="text" inputmode="url" placeholder="linkedin.com/in/you" /></div>
