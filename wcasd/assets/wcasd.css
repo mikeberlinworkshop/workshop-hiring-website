@@ -1,0 +1,63 @@
+/* WCASD identity + palette — loaded AFTER styles.css.
+   styles.css is copied byte-for-byte from the live sparklps stylesheet
+   (Earned/5_Prototypes/workshop-hiring-website/sparklps/assets/styles.css);
+   everything WCASD-specific lives here so the base file diffs clean.
+
+   Palette: WCASD brand blue #005080 (sampled from the district's official
+   wordmark) carries the page — hero/footer in the blue, accents and buttons in
+   the blue family with white/gray neutrals. Spark's gold is gone; the --gold
+   custom property is repurposed as the light-blue accent used on dark
+   backgrounds (stylesheet class names like .btn-gold are structural and stay). */
+
+:root{
+  --navy:#005080;        /* WCASD brand blue */
+  --navy-deep:#00436b;   /* darkened variant for gradient depth */
+  --navy-ink:#00304d;    /* darkest: footer bg, heading ink */
+  --gold:#8fc6e8;        /* light-blue accent on dark backgrounds */
+  --gold-deep:#005080;   /* accent on light backgrounds = brand blue */
+  --line:rgba(0,80,128,.16);
+  --shadow:0 18px 50px -24px rgba(0,48,77,.45);
+}
+
+/* Hero: brand blue gradient, light-blue glow instead of the gold one. */
+.hero{background:radial-gradient(120% 90% at 85% -10%,rgba(143,198,232,.16),transparent 55%),radial-gradient(90% 120% at 0% 110%,rgba(0,67,107,.9),transparent 60%),linear-gradient(160deg,var(--navy) 0%,var(--navy-deep) 58%,var(--navy-ink) 100%)}
+.hero .kicker{color:#dcecf7;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3)}
+.hero h1 .u{background:linear-gradient(transparent 62%,rgba(143,198,232,.4) 62%)}
+.hero-proof b{color:#fff}
+
+/* Buttons: brand blue with white text; on the blue hero they flip to white. */
+.btn-gold{background:var(--navy);color:#fff;box-shadow:0 10px 24px -10px rgba(0,48,77,.55)}
+.btn-gold:hover{box-shadow:0 16px 30px -12px rgba(0,48,77,.7)}
+.hero .btn-gold{background:#fff;color:var(--navy)}
+
+/* Small accents that would otherwise go pale: brand blue on white. */
+.ticks li::before{background:var(--navy)}
+.value{border-top-color:var(--navy)}
+.success .check{background:rgba(0,80,128,.1)}
+input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px rgba(0,80,128,.14)}
+input[type=file]::file-selector-button{background:rgba(0,80,128,.12);color:var(--navy)}
+
+/* Brand slot: WCASD "WC" monogram (blue letters, transparent PNG — needs the
+   light header behind it). In the blue footer it's filtered to white. */
+.brand img{height:44px}
+footer .brand img{height:38px;filter:brightness(0) invert(1)}
+
+/* Nav links: keep each label on one line (the monogram + full district name
+   make the bar tighter than on sparklps, where labels never wrapped). */
+.nav .links a{white-space:nowrap}
+
+/* Program highlights: four cards, not sparklps's five-column values grid. */
+#program .values{grid-template-columns:repeat(4,1fr)}
+@media(max-width:920px){#program .values{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){#program .values{grid-template-columns:1fr}}
+
+/* Verbatim JD paragraphs need breathing room (the global reset zeroes margins). */
+.role-detail p{margin-bottom:1rem}
+
+/* Full word-for-word posting: section subheads + the one-line framing note. */
+.role-detail h3.serif{font-weight:400;font-size:1.25rem;color:var(--navy-ink);margin:1.8rem 0 .8rem}
+.role-detail .sub{color:#5c6a76;font-size:.98rem;margin-bottom:1.6rem}
+
+/* Second footer line: Workshop Ventures copyright, privacy-page footer pattern. */
+footer .wh-line{width:100%;font-size:.8rem;color:rgba(255,255,255,.5)}
+footer .wh-line a{color:rgba(255,255,255,.7)}
